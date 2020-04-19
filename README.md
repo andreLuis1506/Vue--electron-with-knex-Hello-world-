@@ -3,7 +3,7 @@
 ## Description
 >A "HelloWorld" of using Vue js with electronjs to create descktop applications. Also using the query build Knex to help with the database.
 
-In the Project I use a sqlite3 database but it is possible to change it very easily by configuring the knex.
+>In the Project I use a sqlite3 database but it is possible to change it very easily by configuring the knex.
 ### Using:
 [Electron js](electronjs.org)
 
