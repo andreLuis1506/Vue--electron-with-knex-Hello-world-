@@ -1,0 +1,76 @@
+
+<template>
+  <div class="hello">
+    <h1>Hello World</h1>
+    <p>
+      This is a simple example of using Electron, Vue and Knex together.<br>
+      You can add your informations to the database in sqlite and then list it.<br>
+      For more details on these technologies visit electronjs.org, vuejs.org, knexjs.org.
+    </p>
+    <form @submit.prevent="add">
+      Name:
+      <input v-model="name" id="name" required="required" />
+      Email: 
+      <input type="email" v-model="email" id="email" required="required" /> 
+      <br>
+      <button type="submit"> ADD</button>
+    </form>
+    <ul>   
+      <li v-for="user in users" :key="user.id">
+        <div>
+          {{user.name}} / {{user.email}}
+        </div>
+      </li>
+    </ul>   
+  </div>
+</template>
+
+<script>
+import connection from '../database/connection.js'; 
+export default {
+  name: 'HelloWorld',
+  props: {
+    msg: String
+  }, 
+  data(){
+    return{
+      name: '',
+      email: '',
+      users: []
+    }
+  },
+  methods:{
+    async add(){
+      let name = this.name;
+      let email = this.email;
+       await connection('users').insert({
+        name,
+        email,
+      });
+      console.log('ok')
+      this.users = await connection('users').select('*');
+      console.log(this.users);
+    }
+  },
+}
+</script>
+
+<style scoped>
+ul {
+  list-style-type: none;
+  padding: 20px;
+}
+li {
+  margin: 10px 10px;
+}
+button{
+  margin-top:20px;
+  margin-right: 10px
+}
+input{
+  margin-right: 20px;
+}
+p{
+  margin-bottom: 50px;
+}
+</style>
