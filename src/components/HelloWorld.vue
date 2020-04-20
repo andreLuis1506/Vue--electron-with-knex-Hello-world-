@@ -29,15 +29,15 @@
 import connection from '../database/connection.js'; 
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String
-  }, 
   data(){
     return{
       name: '',
       email: '',
       users: []
     }
+  },
+  async created(){
+    this.users = await connection('users').select('*');
   },
   methods:{
     async add(){
@@ -47,9 +47,7 @@ export default {
         name,
         email,
       });
-      console.log('ok')
       this.users = await connection('users').select('*');
-      console.log(this.users);
     }
   },
 }
