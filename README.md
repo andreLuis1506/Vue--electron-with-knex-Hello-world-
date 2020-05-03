@@ -27,3 +27,9 @@ npm run electron:serve
 ```
 npm run electron:build
 ```
+
+#### Bugs
+
+```This dependency was not found:  * mssql/package.json in ./node_modules/knex/lib/dialects/mssql/index.js
+```
+> If this error appears to you, you only need to delete the mssql folder in this directory: Vue - electron-with-knex-Hello-world- / node_modules / knex / lib / dialects 
